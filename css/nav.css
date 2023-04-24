@@ -1,0 +1,78 @@
+:root {
+    /* background colors */
+    --bg: white;
+    --bg_dark: #232323;
+    --bg_d_light: #303030;
+    --bg_d_lighter: #3a3a3a;
+    --bg_darker_a: rgba(17, 17, 17, 0.5);
+    --bg_light_a: rgba(200, 200, 200, 0.5);
+    --bg_btn: royalblue;
+
+    --bg_test: rgba(255, 255, 255, 0.2);
+
+    /* text colors */
+    --text: #1f1f1f;
+    --text_dark: #eeeeee;
+}
+
+/* Navbar */
+/* Thanks to: https://www.w3schools.com/css/css_navbar.asp */
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dark .nav {
+    background-color: var(--bg_d_light);
+}
+
+.light .nav {
+    background-color: lightgray;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-item a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav-item-active {
+    background-color: var(--bg_btn);
+}
+
+.dark .nav-item a {
+    color: var(--text_dark);
+}
+.dark .nav-item a:hover {
+    background-color: var(--bg_d_lighter);
+}
+.nav-item-active a:hover {
+    background-color: var(--bg_btn) !important;
+}
+
+.light .nav-item a {
+    color: var(--text);
+}
+.light .nav-item a:hover {
+    background-color: var(--bg_light_a);
+}
+.light .nav-item-active a {
+    color: var(--text_dark);
+}
+.nav-item i.fa {
+    padding-top: 10px;
+    margin-left: 5px;
+}
+
+.dark .nav-item i.fa {
+    color: var(--text_dark);
+}
+.light .nav-item i.fa {
+    color: var(--text);
+}
