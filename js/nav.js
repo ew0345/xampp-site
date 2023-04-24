@@ -1,3 +1,12 @@
+function toggleAbout() {
+	const a = document.querySelector('.about');
+	if (a.style.display === "none") {
+		a.style.display = "block";
+	} else {
+		a.style.display = "none";
+	}
+}
+
 function getViewMode() {
     let view_mode = localStorage.getItem("view_mode");
     

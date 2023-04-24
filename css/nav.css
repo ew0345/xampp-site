@@ -76,3 +76,30 @@
 .light .nav-item i.fa {
     color: var(--text);
 }
+
+.about {
+    display: none;
+    position: fixed;
+    top: 20%;
+    bottom: 20%;
+    right: 20%;
+    left: 20%;
+    border: 1px solid;
+    z-index: 0;
+    text-align: center;
+}
+
+.about-container {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.dark .about {
+    background-color: var(--bg_dark);
+    color: var(--text_dark);
+}
+
+.light .about {
+    background-color: var(--bg);
+    color: var(--text);
+}
