@@ -7,6 +7,13 @@ function toggleAbout() {
 	}
 }
 
+function setActiveNav() {
+	let listLinks = document.querySelectorAll(".nav-item a");
+	listLinks.forEach(function (v, i) {
+		if (listLinks[i].innerHTML.includes(document.title)) listLinks[i].classList.add("nav-item-active");
+	});
+}
+
 function getViewMode() {
     let view_mode = localStorage.getItem("view_mode");
     
@@ -53,8 +60,10 @@ function toggleViewMode() {
 
 if (document.readyState !== 'loading') {
     setTimeout(getViewMode, 0);
+    setTimeout(setActiveNav, 0);
 } else {
     window.addEventListener('DOMContentLoaded', function () {
         setTimeout(getViewMode, 0);
+        setTimeout(setActiveNav, 0);
     })
 }
