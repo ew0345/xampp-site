@@ -17,7 +17,15 @@
     color: var(--text);
 }
 
-.content {
+.content h1 {
     display: block;
     text-align: center;
+}
+
+.dark .demo-container {
+    color: var(--text_dark);
+}
+
+.light .demo-container {
+    color: var(--text);
 }
