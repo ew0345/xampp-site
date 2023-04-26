@@ -15,6 +15,16 @@
     --text_dark: #eeeeee;
 }
 
+.banner {
+    margin-bottom: 1%;
+}
+.banner img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
 /* Navbar */
 /* Thanks to: https://www.w3schools.com/css/css_navbar.asp */
 .nav {

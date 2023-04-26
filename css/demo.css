@@ -1,0 +1,23 @@
+.dark html,
+.dark body {
+    background-color: var(--bg_dark);
+}
+
+.light html,
+.light body {
+    background-color: var(--bg);
+}
+
+/* body */
+.dark h1 {
+    color: var(--text_dark);
+}
+
+.light h1 {
+    color: var(--text);
+}
+
+.content {
+    display: block;
+    text-align: center;
+}
