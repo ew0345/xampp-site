@@ -191,30 +191,43 @@ function fccdSetup() {
 			});
 
 			if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
-				let store = JSON.parse(localStorage.getItem('color')) || {};
-				localStorage.setItem('color', JSON.stringify(color));
+				let store = JSON.parse(localStorage.getItem("color")) || {};
+				localStorage.setItem("color", JSON.stringify(color));
 
 				document.querySelector(".demo-0").style = `color: ${color}`;
 				document.querySelector(".fccd").style = `color: ${color}`;
 			} else {
 				alert("Invalid color. If you're using HEX please include the #\nFor a list of of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
 			}
+		}
+	});
+}
 
+function resetColor() {
+	document.querySelector(".reset-btn").addEventListener("click", function() {
+		let store = localStorage.getItem("color") || {};
+		if (Object.entries(store).length > 0) {
+			localStorage.removeItem("color");
 
-			/*if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
-				document.querySelector(".fccd").style = `color: ${color}`;
-			} else {
-				alert("Invalid color. If you're using HEX please include the #\nFor a list of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
-			}*/
-
+			for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+				document.querySelectorAll("div")[i].style.color = "";
+			}
+			for (var i = 0; i < document.querySelectorAll("p").length; i++) {
+				document.querySelectorAll("p")[i].style.color = "";
+			}
+			for (var i = 0; i < document.querySelectorAll("h1").length; i++) {
+				document.querySelectorAll("h1")[i].style.color ="";
+			}
 		}
 	});
 }
 
 if (document.readyState !== 'loading') {
 	setTimeout(fccdSetup, 0);
+	setTimeout(resetColor, 0);
 } else {
 	document.addEventListener('DOMContentLoaded', function () {
 		setTimeout(fccdSetup, 0);
+		setTimeout(resetColor, 0);
 	});
 }

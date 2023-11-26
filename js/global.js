@@ -6,7 +6,6 @@ function setupTextColor() {
     if (Object.entries(color).length > 0) {
         color = color.valueOf().toString().split("\"")[1];
         for (var i = 0; i < document.querySelectorAll("div").length; i++) { 
-            console.log(document.querySelectorAll("div")[i].id);
             document.querySelectorAll("div")[i].style.color = color;
         }
     } else {
@@ -21,6 +20,3 @@ if (document.readyState !== "isLoading") {
         setTimeout(setupTextColor, 0);
     });
 }
-
-// TODO:
-//  Stop 'about' from breaking with added style (do this by ADDING a style not ovewriting the existing one.)
