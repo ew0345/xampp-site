@@ -191,10 +191,22 @@ function fccdSetup() {
 			});
 
 			if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
+				let store = JSON.parse(localStorage.getItem('color')) || {};
+				localStorage.setItem('color', JSON.stringify(color));
+
+				document.querySelector(".demo-0").style = `color: ${color}`;
+				document.querySelector(".fccd").style = `color: ${color}`;
+			} else {
+				alert("Invalid color. If you're using HEX please include the #\nFor a list of of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
+			}
+
+
+			/*if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
 				document.querySelector(".fccd").style = `color: ${color}`;
 			} else {
 				alert("Invalid color. If you're using HEX please include the #\nFor a list of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
-			}
+			}*/
+
 		}
 	});
 }
