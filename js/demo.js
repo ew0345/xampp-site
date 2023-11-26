@@ -149,15 +149,53 @@ function fccdSetup() {
 
 	    let isValidColor = false;
 
-	    colorNames.forEach(function(v) {
-	    	if (color.toLowerCase().includes(v.toLowerCase())) isValidColor = true;
-	    });
+		if (color.toLowerCase() === "content.show") {
+			const a = document.createElement("div");
+			const a1 = document.createElement("input");
+			const a2 = document.createElement("br");
+			const a3 = document.createElement("button");
 
-	    if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
-	    	document.querySelector(".fccd").style = `color: ${color}`;
-	    } else {
-	    	alert("Invalid color. If you're using HEX please include the #\nFor a list of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
-	    }
+			a.setAttribute("class", "demo-1");
+			a1.setAttribute("class", "input");
+			a3.innerText = "Submit"
+
+			if (!document.querySelector(".demo-1")) {
+				document.body.append(a);
+				a.append(a1);
+				a.append(a2);
+				a.append(a3);
+
+				a3.onclick = function () {
+					let p = a1.value;
+					switch (p.toLowerCase()) {
+						default: break;
+						case "test": 
+							console.log("AAA");
+							break;
+					}
+				}
+				window.onkeydown = function(e) {
+					switch(e.key) {
+						case "Enter":
+							if (document.activeElement.className == "input") {
+								a3.click();
+							}
+							break;
+						default: break;
+					}
+				}
+			}
+		} else {
+			colorNames.forEach(function(v) {
+				if (color.toLowerCase().includes(v.toLowerCase())) isValidColor = true;
+			});
+
+			if (validateHex.test(color) === true && isValidColor === false || isValidColor === true) {
+				document.querySelector(".fccd").style = `color: ${color}`;
+			} else {
+				alert("Invalid color. If you're using HEX please include the #\nFor a list of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
+			}
+		}
 	});
 }
 
