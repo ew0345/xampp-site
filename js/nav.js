@@ -1,4 +1,5 @@
 function initializeAbout() {
+    // create elements
     let a = document.createElement("div");
     let ac = document.createElement("div");
     let ah1 = document.createElement("h1");
@@ -8,7 +9,7 @@ function initializeAbout() {
     let abr = document.createElement("br");
     let aeb = document.createElement("button");
 
-
+    // define properties
     a.id = "about";
     a.style = "display:none;position:fixed;top:20%;bottom:20%;right:20%;left:20%;border:1px solid;z-index:0;text-align:center;";
     ac.id = "about-container";
@@ -19,7 +20,18 @@ function initializeAbout() {
     aeb.innerHTML="Close";
     aeb.setAttribute("onclick", "toggleAbout()");
 
+    // set font color
+    let color = localStorage.getItem("color") || {}
+    if (Object.entries(color).length > 0) {
+        color = color.valueOf().toString().split("\"")[1];
+        ah1.style.color = color;
+        ap1.style.color = color;
+        ap2.style.color = color;
+    } else {
+        console.log("invalid color");
+    }
 
+    // append elements
     document.body.append(a);
     a.append(ac);
     ac.append(ah1);
