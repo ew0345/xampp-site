@@ -1,4 +1,4 @@
 @echo off
-cd "C:\Users\Elijah\Documents\Code\Web\xampp-site"
+cd "D:\Code\Webdev\xampp-site"
 
-xcopy /s /y "*" "C:\xampp\htdocs"
+xcopy /s /y "*" "D:\xampp\htdocs"
