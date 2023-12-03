@@ -43,10 +43,44 @@ function initializeAbout() {
     a.append(aeb);
 }
 
+function initializeAcc() {
+    let acc = document.createElement("div");
+    let accc = document.createElement("div");
+    let acceb = document.createElement("button");
+    
+    acc.id = "accessibility";
+    acc.style = "display:none;position:fixed;top:20%;bottom:20%;right:20%;left:20%;border:1px solid;z-index:0;text-align:center;";
+    accc.id="acc-container";
+    acceb.innerHTML = "Close";
+    acceb.setAttribute("onclick", "toggleAcc()");
+    acceb.style="z-index:1;";
+
+    document.body.append(acc);
+    acc.append(accc);
+    acc.append(acceb);
+    // TODO
+}
+
+function toggleAcc() {
+    const a1 = document.querySelector("#accessibility");
+    console.log(a1);
+    if (a1.style.display === "none") {
+		a1.style.display = "block";
+        if (document.querySelector("#about").style.display === "block") {
+            document.querySelector("#about").style.display = "none";
+        }
+	} else {
+		a1.style.display = "none";
+	}
+}
+
 function toggleAbout() {
-	const a = document.querySelector('#about');
+	const a = document.querySelector("#about");
 	if (a.style.display === "none") {
 		a.style.display = "block";
+        if (document.querySelector("#accessibility").style.display === "block") {
+            document.querySelector("#accessibility").style.display = "none";
+        }
 	} else {
 		a.style.display = "none";
 	}
@@ -104,13 +138,25 @@ function toggleViewMode() {
 }
 
 if (document.readyState !== 'loading') {
-    setTimeout(getViewMode, 0);
-    setTimeout(setActiveNav, 0);
-    setTimeout(initializeAbout, 0);
+   // setTimeout(getViewMode, 0);
+   // setTimeout(setActiveNav, 0);
+   // setTimeout(initializeAbout, 0);
+    setTimeout(()=>{
+        getViewMode();
+        setActiveNav();
+        initializeAbout();
+        initializeAcc();
+    }, 0);
 } else {
     window.addEventListener('DOMContentLoaded', function () {
-        setTimeout(getViewMode, 0);
-        setTimeout(setActiveNav, 0);
-        this.setTimeout(initializeAbout);
+       // setTimeout(getViewMode, 0);
+       // setTimeout(setActiveNav, 0);
+       // this.setTimeout(initializeAbout);
+       setTimeout(()=>{
+        getViewMode();
+        setActiveNav();
+        initializeAbout();
+        initializeAcc();
+    }, 0);
     })
 }
