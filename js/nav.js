@@ -24,9 +24,7 @@ function initializeAbout() {
     let color = localStorage.getItem("color") || {}
     if (Object.entries(color).length > 0) {
         color = color.valueOf().toString().split("\"")[1];
-        ah1.style.color = color;
-        ap1.style.color = color;
-        ap2.style.color = color;
+        a.style.color = color;
     } else {
         console.log("invalid color");
     }
@@ -61,7 +59,6 @@ function initializeAcc() {
     document.body.append(acc);
     acc.append(acc_cont);
     acc_cont.append(acc_br[0])
-    // TODO
 
     // Set Font Color
     let sfc_cont = document.createElement("div");
@@ -71,8 +68,8 @@ function initializeAcc() {
     let sfc_b1 = document.createElement("button");
     let sfc_spacer = document.createElement("span");
 
+    // define properties
     sfc_cont.id = "sfc_cont";
-    // sfc_cont.style = "position:fixed;"
     sfc_s.id = "sfc_s";
     sfc_s.innerHTML = "Set Font Color ";
     sfc_i.id = "sfc_i";
@@ -84,19 +81,28 @@ function initializeAcc() {
     sfc_b1.innerHTML = "Reset";
     sfc_spacer.inneHTML = "  ";
 
+    // append elements
     acc_cont.append(sfc_cont);
     sfc_cont.append(sfc_s);
     sfc_cont.append(sfc_i);
     sfc_cont.append(sfc_spacer);
     sfc_cont.append(sfc_b0);
-    sfc_cont.append(sfc_b1);
-    acc_cont.append(acc_br[1]);    
+    sfc_cont.append(sfc_b1);   
 
-    acc_cont.append(acc_exit);
-
+    // append extra elements
     acc_scr.type="text/javascript";
     acc_scr.src="/js/accessibility.js";
+    acc_cont.append(acc_br[1]);
+    acc_cont.append(acc_exit);
     document.head.append(acc_scr);
+
+    let color = localStorage.getItem("color") || {}
+    if (Object.entries(color).length > 0) {
+        color = color.valueOf().toString().split("\"")[1];
+        acc.style.color = color;
+    } else {
+        console.log("invalid color");
+    }
 }
 
 function toggleAcc() {

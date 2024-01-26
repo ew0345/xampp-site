@@ -1,6 +1,7 @@
 // Code for Accessibility Menu
 let reset = false;
 
+
 function accSetColor() {
     document.querySelector("#sfc_b0").addEventListener("click", function() {
         let colorNames = [
