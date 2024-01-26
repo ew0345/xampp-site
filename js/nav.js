@@ -139,25 +139,9 @@ function setActiveNav() {
 
 
 if (document.readyState !== 'loading') {
-   // setTimeout(getViewMode, 0);
-   // setTimeout(setActiveNav, 0);
-   // setTimeout(initializeAbout, 0);
-    setTimeout(()=>{
-        //getViewMode();
-        setActiveNav();
-        initializeAbout();
-        initializeAcc();
-    }, 0);
+    setTimeout(() => {setActiveNav(); initializeAbout(); initializeAcc(); }, 0);
 } else {
     window.addEventListener('DOMContentLoaded', function () {
-       // setTimeout(getViewMode, 0);
-       // setTimeout(setActiveNav, 0);
-       // this.setTimeout(initializeAbout);
-       setTimeout(()=>{
-        //getViewMode();
-        setActiveNav();
-        initializeAbout();
-        initializeAcc();
-    }, 0);
-    })
+       setTimeout(()=>{ setActiveNav(); initializeAbout(); initializeAcc(); }, 0);
+    });
 }
