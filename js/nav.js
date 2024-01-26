@@ -44,21 +44,59 @@ function initializeAbout() {
 }
 
 function initializeAcc() {
+    // Setup Accessibility Window
     let acc = document.createElement("div");
-    let accc = document.createElement("div");
-    let acceb = document.createElement("button");
+    let acc_cont = document.createElement("div");
+    let acc_exit = document.createElement("button");
+    let acc_br = [document.createElement("br"), document.createElement("br")]
+    let acc_scr = document.createElement(`script`);
     
     acc.id = "accessibility";
     acc.style = "display:none;position:fixed;top:20%;bottom:20%;right:20%;left:20%;border:1px solid;z-index:0;text-align:center;";
-    accc.id="acc-container";
-    acceb.innerHTML = "Close";
-    acceb.setAttribute("onclick", "toggleAcc()");
-    acceb.style="z-index:1;";
+    acc_cont.id="acc-container";
+    acc_exit.innerHTML = "Close";
+    acc_exit.setAttribute("onclick", "toggleAcc()");
+    acc_exit.style="z-index:1;";
 
     document.body.append(acc);
-    acc.append(accc);
-    acc.append(acceb);
+    acc.append(acc_cont);
+    acc_cont.append(acc_br[0])
     // TODO
+
+    // Set Font Color
+    let sfc_cont = document.createElement("div");
+    let sfc_s = document.createElement("span");
+    let sfc_i = document.createElement("input");
+    let sfc_b0 = document.createElement("button");
+    let sfc_b1 = document.createElement("button");
+    let sfc_spacer = document.createElement("span");
+
+    sfc_cont.id = "sfc_cont";
+    // sfc_cont.style = "position:fixed;"
+    sfc_s.id = "sfc_s";
+    sfc_s.innerHTML = "Set Font Color ";
+    sfc_i.id = "sfc_i";
+    sfc_i.type = "text";
+    sfc_i.value = "";
+    sfc_b0.id = "sfc_b0";
+    sfc_b0.innerHTML = "Set";
+    sfc_b1.id = "sfc_b1";
+    sfc_b1.innerHTML = "Reset";
+    sfc_spacer.inneHTML = "  ";
+
+    acc_cont.append(sfc_cont);
+    sfc_cont.append(sfc_s);
+    sfc_cont.append(sfc_i);
+    sfc_cont.append(sfc_spacer);
+    sfc_cont.append(sfc_b0);
+    sfc_cont.append(sfc_b1);
+    acc_cont.append(acc_br[1]);    
+
+    acc_cont.append(acc_exit);
+
+    acc_scr.type="text/javascript";
+    acc_scr.src="/js/accessibility.js";
+    document.head.append(acc_scr);
 }
 
 function toggleAcc() {
@@ -93,56 +131,13 @@ function setActiveNav() {
 	});
 }
 
-function getViewMode() {
-    let view_mode = localStorage.getItem("view_mode");
-    
-    if (view_mode === null || !view_mode.includes("dark") && !view_mode.includes ("light")) {
-        localStorage.setItem("view_mode", "dark");
-        view_mode = localStorage.getItem("view_mode");
-    }
-    
-    view_mode.includes("dark") ? setViewMode("dark") : setViewMode("light");
-}
-
-function setViewMode(mode) {
-    let objectList = ["html", "body"];
-    let view_mode = localStorage.getItem("view_mode");
-    let vm_icon = document.querySelector('.fa');
-    
-    switch (mode) {
-        case "dark":
-            objectList.forEach(function(i) {
-                if (document.querySelector(i).classList.contains("light")) document.querySelector(i).classList.remove("light");
-                document.querySelector(i).classList.add("dark");
-            });
-            if (!view_mode.includes("dark")) localStorage.setItem("view_mode", "dark");
-            vm_icon.classList.remove("fa-moon-o");
-            vm_icon.classList.add("fa-sun-o");
-            break;
-        case "light":
-            objectList.forEach(function(i) {
-                if (document.querySelector(i).classList.contains("dark")) document.querySelector(i).classList.remove("dark");
-                document.querySelector(i).classList.add("light");
-            });
-            if (!view_mode.includes("light")) localStorage.setItem("view_mode", "light");
-            vm_icon.classList.remove("fa-sun-o");
-            vm_icon.classList.add("fa-moon-o");
-            break;
-        default: break;
-    }
-}
-
-function toggleViewMode() {
-    let view_mode = localStorage.getItem("view_mode");
-    view_mode.includes("dark") ? setViewMode("light") : setViewMode("dark");
-}
 
 if (document.readyState !== 'loading') {
    // setTimeout(getViewMode, 0);
    // setTimeout(setActiveNav, 0);
    // setTimeout(initializeAbout, 0);
     setTimeout(()=>{
-        getViewMode();
+        //getViewMode();
         setActiveNav();
         initializeAbout();
         initializeAcc();
@@ -153,7 +148,7 @@ if (document.readyState !== 'loading') {
        // setTimeout(setActiveNav, 0);
        // this.setTimeout(initializeAbout);
        setTimeout(()=>{
-        getViewMode();
+        //getViewMode();
         setActiveNav();
         initializeAbout();
         initializeAcc();
