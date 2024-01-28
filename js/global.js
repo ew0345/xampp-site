@@ -1,7 +1,3 @@
-// for reseting txt/bg color properly
-let txtHasReset = false;
-let bgHasReset = false;
-
 // View Mode
 function getViewMode() {
     let view_mode = localStorage.getItem("view_mode");
@@ -59,15 +55,9 @@ function setupTextColor() {
         }
     } else if (window.accReset === true) {
         window.accReset = false;
-        resetTextColor();
+        resetColor("text");
     } else {
         console.log("invalid color");
-    }
-}
-
-function resetTextColor() {
-    for (var i = 0; i < document.querySelectorAll("div").length; i++) {
-        document.querySelectorAll("div")[i].style.color = '';
     }
 }
 
@@ -82,16 +72,26 @@ function setupBackgroundColor() {
         }
     } else if (window.accBgReset === true) {
         window.accBgReset = false;
-        bgHasReset = false;
-        resetBackgroundColor();
+        resetColor("background");
     } else {
         console.log("invalid bg color");
     }
 }
 
-function resetBackgroundColor() {
-    for (var i = 0; i < document.querySelectorAll("div").length; i++) {
-        document.querySelectorAll("div")[i].style.backgroundColor = '';
+// Reset colors
+function resetColor(type) {
+    switch (type) {
+        case "text":
+            for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+                document.querySelectorAll("div")[i].style.color = '';
+            }
+            break;
+        case "background":
+            for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+                document.querySelectorAll("div")[i].style.backgroundColor = '';
+            }
+            break;
+        default: break;
     }
 }
 
