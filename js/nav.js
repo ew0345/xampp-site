@@ -26,7 +26,7 @@ function initializeAbout() {
         color = color.valueOf().toString().split("\"")[1];
         a.style.color = color;
     } else {
-        console.log("invalid color");
+        console.log("about_invalid_color");
     }
 
     // append elements
@@ -101,7 +101,7 @@ function initializeAcc() {
         color = color.valueOf().toString().split("\"")[1];
         acc.style.color = color;
     } else {
-        console.log("invalid color");
+        console.log("acc_invalid_color");
     }
 }
 

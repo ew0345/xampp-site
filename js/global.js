@@ -1,6 +1,8 @@
-// current only for setting global font color
-let hasReset = false;
+// for reseting txt/bg color properly
+let txtHasReset = false;
+let bgHasReset = false;
 
+// View Mode
 function getViewMode() {
     let view_mode = localStorage.getItem("view_mode");
     
@@ -44,10 +46,9 @@ function setViewMode(mode) {
 function toggleViewMode() {
     let view_mode = localStorage.getItem("view_mode");
     view_mode.includes("dark") ? setViewMode("light") : setViewMode("dark");
-    if (hasReset === true) resetTextColor();
 }
 
-
+// Text Color
 function setupTextColor() {
     let color = localStorage.getItem("color") || {};
 
@@ -58,7 +59,6 @@ function setupTextColor() {
         }
     } else if (window.accReset === true) {
         window.accReset = false;
-        hasReset = true;
         resetTextColor();
     } else {
         console.log("invalid color");
@@ -66,15 +66,33 @@ function setupTextColor() {
 }
 
 function resetTextColor() {
-    if (getViewMode() === "dark" && hasReset === true) {
-        localStorage.setItem("color", JSON.stringify("#eeeeee"));
-        setupTextColor();
-    } else if (getViewMode() === "light" && hasReset === true) {
-        localStorage.setItem("color", JSON.stringify("#1f1f1f"));
-        setupTextColor();
+    for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+        document.querySelectorAll("div")[i].style.color = '';
     }
+}
 
-    localStorage.removeItem("color");
+// Background Color
+function setupBackgroundColor() {
+    let color = localStorage.getItem("color") || {};
+
+    if (Object.entries(color).length > 0) {
+        color = color.valueOf().toString().split("\"")[1];
+        for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+            document.querySelectorAll("div")[i].style.backgroundColor = color;
+        }
+    } else if (window.accBgReset === true) {
+        window.accBgReset = false;
+        bgHasReset = false;
+        resetBackgroundColor();
+    } else {
+        console.log("invalid bg color");
+    }
+}
+
+function resetBackgroundColor() {
+    for (var i = 0; i < document.querySelectorAll("div").length; i++) {
+        document.querySelectorAll("div")[i].style.backgroundColor = '';
+    }
 }
 
 if (document.readyState !== "isLoading") {
