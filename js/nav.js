@@ -26,7 +26,7 @@ function initializeAbout() {
         color = color.valueOf().toString().split("\"")[1];
         a.style.color = color;
     } else {
-        console.log("about_invalid_color");
+        console.warn("about_invalid_color");
     }
 
     // append elements
@@ -89,6 +89,47 @@ function initializeAcc() {
     sfc_cont.append(sfc_b0);
     sfc_cont.append(sfc_b1);   
 
+    // Set Background Color
+    let sbg_cont = [document.createElement("div"), document.createElement("div")];
+    let sbg_s = [document.createElement("span"), document.createElement("span")];
+    let sbg_i = [document.createElement("input"), document.createElement("input")];
+    let sbg_b0 = [document.createElement("button"), document.createElement("button")];
+    let sbg_b1 = [document.createElement("button"), document.createElement("button")];
+
+    // define properties
+    sbg_cont[0].id = "sbg_cont0";
+    sbg_cont[1].id = "sbg_cont1";
+    sbg_s[0].id = "sbg_s0";
+    sbg_s[1].id = "sbg_s1";
+    sbg_s[0].innerHTML = "Set Text Background Color ";
+    sbg_s[1].innerHTML = "Set Page Background Color ";
+    sbg_i[0].id = "sbg_i0";
+    sbg_i[1].id = "sbg_i1";
+    sbg_i[0].type = "text";
+    sbg_i[1].type = "text";
+    sbg_i[0].value = "";
+    sbg_i[1].value = "";
+    sbg_b0[0].id = "sbg_b0_0";
+    sbg_b0[1].id = "sbg_b0_1";
+    sbg_b0[0].innerHTML = "Set";
+    sbg_b0[1].innerHTML = "Set";
+    sbg_b1[0].id = "sbg_b1_0";
+    sbg_b1[1].id = "sbg_b1_1";
+    sbg_b1[0].innerHTML = "Reset";
+    sbg_b1[1].innerHTML = "Reset";
+
+    // append elements
+    acc_cont.append(sbg_cont[0]);
+    acc_cont.append(sbg_cont[1]);
+    sbg_cont[0].append(sbg_s[0]);
+    sbg_cont[0].append(sbg_i[0]);
+    sbg_cont[0].append(sbg_b0[0]);
+    sbg_cont[0].append(sbg_b1[0]);
+    sbg_cont[1].append(sbg_s[1]);
+    sbg_cont[1].append(sbg_i[1]);
+    sbg_cont[1].append(sbg_b0[1]);
+    sbg_cont[1].append(sbg_b1[1]);
+
     // append extra elements
     acc_scr.type="text/javascript";
     acc_scr.src="/js/accessibility.js";
@@ -101,7 +142,7 @@ function initializeAcc() {
         color = color.valueOf().toString().split("\"")[1];
         acc.style.color = color;
     } else {
-        console.log("acc_invalid_color");
+        console.warn("acc_invalid_color");
     }
 }
 

@@ -9,7 +9,7 @@
 }
 
 /* body */
-.placeholder {
+.content {
     display: block;
     text-align: center;
     margin-top: 1%;
@@ -18,29 +18,29 @@
     padding-top: 1%;
 }
 
-.dark .placeholder {
+.dark .content {
     color: var(--text_dark);
     background-color: var(--bg_darker_a);
 }
 
-.light .placeholder {
+.light .content {
     color: var(--text);
     background-color: var(--bg_light_a);
 }
 
-.placeholder hr {
+.content hr {
     margin-left: 3%;
     margin-right: 3%;
 }
 
-.content {
+.page-content {
     display: block;
     margin-left: 5%;
     margin-right: 5%;
     padding-bottom: 3px;
 }
 
-.content p {
+.page-content p {
     text-align: center;
     font-size: 20px;
 }

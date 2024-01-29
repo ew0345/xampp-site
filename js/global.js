@@ -49,7 +49,7 @@ function setupTextColor() {
     let color = localStorage.getItem("color") || {};
 
     if (Object.entries(color).length > 0) {
-        color = color.valueOf().toString().split("\"")[1];
+        color = color.valueOf().toString();
         for (var i = 0; i < document.querySelectorAll("div").length; i++) { 
             document.querySelectorAll("div")[i].style.color = color;
         }
@@ -57,24 +57,38 @@ function setupTextColor() {
         window.accReset = false;
         resetColor("text");
     } else {
-        console.log("invalid color");
+        console.warn("text_invalid_color");
     }
 }
 
 // Background Color
-function setupBackgroundColor() {
-    let color = localStorage.getItem("color") || {};
+function setupBackgroundColor(type) {
+    let bg_color0 = localStorage.getItem("text bg color") || {};
+    let bg_color1 = localStorage.getItem("page bg color") || {};
 
-    if (Object.entries(color).length > 0) {
-        color = color.valueOf().toString().split("\"")[1];
-        for (var i = 0; i < document.querySelectorAll("div").length; i++) {
-            document.querySelectorAll("div")[i].style.backgroundColor = color;
-        }
-    } else if (window.accBgReset === true) {
-        window.accBgReset = false;
-        resetColor("background");
-    } else {
-        console.log("invalid bg color");
+    switch (type) {
+        case "text":
+            if (Object.entries(bg_color0).length > 0) {
+                bg_color0 = bg_color0.valueOf().toString();
+                document.querySelector(".content").style.background = bg_color0;
+            } else if (window.accTxtBgReset === true) {
+                window.accTxtBgReset = false;
+                resetColor("text_bg");
+            } else {
+                console.warn("text_bg_invalid_color");
+            }
+            break;
+        case "page":
+            if (Object.entries(bg_color1).length > 0) {
+                bg_color1 = bg_color1.valueOf().toString();
+                document.body.style.background = bg_color1;
+            } else if (window.accPgBgReset === true) {
+                window.accPgBgReset = false;
+                resetColor("page_bg");
+            } else {
+                console.warn("page_bg_invalid_color");
+            }
+            break;
     }
 }
 
@@ -86,19 +100,20 @@ function resetColor(type) {
                 document.querySelectorAll("div")[i].style.color = '';
             }
             break;
-        case "background":
-            for (var i = 0; i < document.querySelectorAll("div").length; i++) {
-                document.querySelectorAll("div")[i].style.backgroundColor = '';
-            }
+        case "text_bg":
+            document.querySelector(".content").style.background = '';
+            break;
+        case "page_bg":
+            document.body.style.background = '';
             break;
         default: break;
     }
 }
 
 if (document.readyState !== "isLoading") {
-    setTimeout(() => { setupTextColor(); getViewMode(); }, 0);
+    setTimeout(() => { setupTextColor(); getViewMode(); setupBackgroundColor("text"); setupBackgroundColor("page"); }, 0);
 } else {
     document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(() => { setupTextColor(); getViewMode(); }, 0);
+        setTimeout(() => { setupTextColor(); getViewMode(); setupBackgroundColor("text"); setupBackgroundColor("page"); }, 0);
     });
 }

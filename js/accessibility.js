@@ -1,5 +1,5 @@
 // Code for Accessibility Menu
-let reset = false;
+
 // Validate a color (name/hex)
 function validateColor(color) {
 	let colorNames = [
@@ -165,12 +165,12 @@ function accSetColor() {
         let color = document.querySelector("#sfc_i").value;
         let isValid = validateColor(color);
 		if (isValid) {
-			localStorage.setItem("color", JSON.stringify(color));
+			localStorage.setItem("color", color);
 			setupTextColor();
 		} else if (!isValid) {
 			alert("Invalid color. If you're using HEX please include the #\nFor a list of of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
 		} else {
-			alert("Please Report this error to the site admin.");
+			alert("Please report this error to the site admin.");
 		}
     });
 }
@@ -180,8 +180,7 @@ function accResetColor() {
         let store = localStorage.getItem("color") || {};
         if (Object.entries(store).length > 0) {
             localStorage.removeItem("color");
-			reset = true;
-            window.accReset = reset;
+            window.accReset = true
             setupTextColor();
         }
     });
@@ -189,20 +188,61 @@ function accResetColor() {
 
 // Background Color
 function accBgColor() {
-	// For Setting Background Color
-	window.accBgReset = false;
+	document.querySelector("#sbg_b0_0").addEventListener("click", function () {
+		// Set Text Background Color
+		let color = document.querySelector("#sbg_i0").value;
+		let isValid = validateColor(color);
+		if (isValid) {
+			localStorage.setItem("text bg color", color);
+			setupBackgroundColor("text");
+		} else if (!isValid) {
+			alert("Invalid color. If you're using HEX please include the #\nFor a list of of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
+		} else {
+			alert("Please report this error to the site admin.");
+		}
+	});
+	document.querySelector("#sbg_b0_1").addEventListener("click", function () {
+		// Set Page Background Color
+		let color = document.querySelector("#sbg_i1").value;
+		let isValid = validateColor(color);
+		if (isValid) {
+			localStorage.setItem("page bg color", color);
+			setupBackgroundColor("page");
+		} else if (!isValid) {
+			alert("Invalid color. If you're using HEX please include the #\nFor a list of of HTML Color Names please see here: https://www.w3schools.com/tags/ref_colornames.asp");
+		} else {
+			alert("Please report this error to the site admin.");
+		}
+	});
 }
 
 function accBgResetColor() {
 	// For Reseting Background Color
+	document.querySelector("#sbg_b1_0").addEventListener("click", function () {
+		// Reset Text Background Color
+		let store = localStorage.getItem("text bg color") || {}
+		if (Object.entries(store).length > 0) {
+			localStorage.removeItem("text bg color");
+			window.accTxtBgReset = true;
+			setupBackgroundColor("text");
+		}
+	});
+
+	document.querySelector("#sbg_b1_1").addEventListener("click", function () {
+		// Reset Page Background Color
+		let store = localStorage.getItem("page bg color") || {};
+		if (Object.entries(store).length > 0) {
+			localStorage.removeItem("page bg color");
+			window.accPgBgReset = true;
+			setupBackgroundColor("page");
+		}
+	});
 }
 
 if (document.readyState !== 'loading') {
-    setTimeout(accSetColor, 0);
-    setTimeout(accResetColor, 0);
+	setTimeout(() => { accSetColor(); accResetColor(); accBgColor(); accBgResetColor() }, 0);
 } else {
     document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(accSetColor, 0);
-        setTimeout(accResetColor, 0);
+        setTimeout(() => { accSetColor(); accResetColor(); accBgColor(); accBgResetColor() }, 0);
     });
 }
